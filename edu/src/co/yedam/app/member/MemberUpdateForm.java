@@ -23,7 +23,7 @@ public class MemberUpdateForm extends HttpServlet {
 				//응답결과 인코딩  
 				response.setContentType("text/html; charset=UTF-8");
 				//요청정보 인코딩
-				request.setCharacterEncoding("utf-8");
+				request.setCharacterEncoding("utf-8"); //post로 받을때는 이거 꼭 해줘야함
 					
 				//1.파라미터 받기
 				String id = request.getParameter("id"); // 이런식으로 아이디와 패스워드 받기												
@@ -73,19 +73,27 @@ public class MemberUpdateForm extends HttpServlet {
 	 */
 	//수정페이지로 이동
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//파라미터 받기 (회원 아이디 받기)
-		String id = request.getParameter("id"); // 외우기 젤 많이 사용
+		//파라미터 받기 (회원 아이디 받기) - > 세션에서 id 가져오기 
+		String id = (String) request.getSession().getAttribute("loginId");
+		if(id == null ) {
+			response.sendRedirect("/edu/member/login.jsp");
+			return;
+		}
+		
+		
+		
+//		String id = request.getParameter("id"); // 외우기 젤 많이 사용
 		
 		//서비스 로직 처리
 		MemberDAO dao = new MemberDAO();
 		MemberVO vo = dao.getMember(id); //한건조회 vo에 id값을 담을것임
-
+ 
 		//결과저장
 		request.setAttribute("member", vo);  // 정말 중요한 부분!! 
 		
 		//뷰페이지로 이동
 		request.getRequestDispatcher("/member/memberUpdate.jsp")
-			   .forward(request, response);
+			   .forward(request, response); //리퀘스트 객체를 넘겨줘야하면 forward임 
 	}
 
 }

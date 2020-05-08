@@ -6,6 +6,16 @@ public class BoardVO {
 	String contents;
 	String regdt;
 	String id;
+	String name;
+	
+	
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public String getSeq() {
 		return seq;
 	}
@@ -39,9 +49,9 @@ public class BoardVO {
 	@Override
 	public String toString() {
 		return "BoardVO [seq=" + seq + ", title=" + title + ", contents=" + contents + ", regdt=" + regdt + ", id=" + id
-				+ "]";
+				+ ", name=" + name + "]";
 	}
-	
-	
+
+
 
 }

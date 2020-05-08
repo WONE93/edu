@@ -6,9 +6,12 @@
 <title> 게시판 등록 </title>
 </head>
 <body>
+	<!-- Nevigation bar -->
+	<%@include file="/common/menu.jsp"%>
+
 	<h3>게시판</h3>
 	<form action="../BoardInsert.do" method="post" >
-	작성자 : <input type="text" name="id"  /><br/>
+	작성자 : <input type="text" name="id"  value= "${loginId}"><br/>								
 	제목 : <input type ="text" name="title" id="title"/><br/>
 	내용: <input type="text" name="contents" id="contents"/><br/>
 		

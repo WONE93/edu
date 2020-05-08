@@ -6,6 +6,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<!-- Nevigation bar -->
+	<%@include file="/common/menu.jsp"%>
+	
 	<h3>회원정보</h3>
 	<form action="../MemberInsert.do" method="post" >
 	ID : <input type="text" name="id"  /><br/>

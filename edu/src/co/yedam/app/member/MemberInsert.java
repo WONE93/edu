@@ -64,16 +64,21 @@ public class MemberInsert extends HttpServlet {
 		member.setGender(gender);
 		member.setReligion(religion);
 		member.setIntroduction(introduction);
-//		member.setRegdt(regdt);
 		
 		int r = memberDAO.memberInsert(member);
 		
-		//3.결과출력
-		PrintWriter out = response.getWriter();
-		out.print("<br>아디 = " + id); // System.out.
-		out.append("<br>pwd = " + pwd);
-		out.append("<br>취미 = " + hobbs);
-		out.print("<br> 처리된 건수= " + r);
+		//3.회원목록 이동   // include, forward, sendRedirect
+		response.sendRedirect("/edu/MemberList.do");  
+		//센드했을때랑 포워드와의 차이 살펴보기
+//		request.getRequestDispatcher("/MemberList.do")
+//				.forward(request, response);
+		
+		//3.결과출력   . 회원이동 전엔 결과출력으로 했음 
+//		PrintWriter out = response.getWriter();
+//		out.print("<br>아디 = " + id); // System.out.
+//		out.append("<br>pwd = " + pwd);
+//		out.append("<br>취미 = " + hobbs);
+//		out.print("<br> 처리된 건수= " + r);
 		
 		
 		
