@@ -37,25 +37,31 @@ public class BoardList extends HttpServlet {
 		ArrayList<BoardVO> list = dao.getBoardList();
 
 		// 3. 결과출력 OR 결과저장해서 view 포워드
+		request.setAttribute("list", list);
+		request
+		.getRequestDispatcher("/board/boardList.jsp")
+		.forward(request, response);
+		
+		
 		// 응답결과 인코딩
-		response.setContentType("text/html; charset=UTF-8");
-
-		PrintWriter out = response.getWriter();
-		request.getRequestDispatcher("/common/menu.jsp").include(request, response);
-
-		out.print("<h3>게시판목록</h3>");
-		out.print("<table border>");
-
-		for (BoardVO bvo : list) {
-			out.print("<tr>");
-			out.print("<td>" + bvo.getName() + "</td>");
-			out.print("<td>" + bvo.getTitle() + "</td>");
-			out.print("<td>" + bvo.getRegdt() + "</td>");
-			out.print("<tr>");
-
-		}
-
-		out.print("</table>");
+//		response.setContentType("text/html; charset=UTF-8");
+//
+//		PrintWriter out = response.getWriter();
+//		request.getRequestDispatcher("/common/menu.jsp").include(request, response);
+//
+//		out.print("<h3>게시판목록</h3>");
+//		out.print("<table border>");
+//
+//		for (BoardVO bvo : list) {
+//			out.print("<tr>");
+//			out.print("<td>" + bvo.getName() + "</td>");
+//			out.print("<td>" + bvo.getTitle() + "</td>");
+//			out.print("<td>" + bvo.getRegdt() + "</td>");
+//			out.print("<tr>");
+//
+//		}
+//
+//		out.print("</table>");
 	}
 
 	/**

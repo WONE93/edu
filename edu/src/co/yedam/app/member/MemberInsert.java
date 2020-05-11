@@ -68,7 +68,9 @@ public class MemberInsert extends HttpServlet {
 		int r = memberDAO.memberInsert(member);
 		
 		//3.회원목록 이동   // include, forward, sendRedirect
-		response.sendRedirect("/edu/MemberList.do");  
+		String contextPath = getServletContext().getContextPath();
+		response.sendRedirect(contextPath + "/MemberList.do");  
+//		response.sendRedirect("/edu/MemberList.do");  //절대경로. 이름 바뀔 수 있기 때문에 위의 방식으로 경로지정
 		//센드했을때랑 포워드와의 차이 살펴보기
 //		request.getRequestDispatcher("/MemberList.do")
 //				.forward(request, response);

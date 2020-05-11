@@ -2,6 +2,7 @@ package co.yedam.app.board;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,10 +18,18 @@ import javax.servlet.http.HttpServletResponse;
 public class BoardInsert extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
+
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request
+		.getRequestDispatcher("/board/boardInsert.jsp")
+		.forward(request, response);
+		
+	}
+
+
+
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// 포스트 방식일때는 밑의 방식으로 해야 한글 안깨짐

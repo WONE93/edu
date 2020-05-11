@@ -34,23 +34,31 @@ public class MemberList extends HttpServlet {
 		ArrayList<MemberVO> list = dao.getMemberList();
 		
 		//3. 결과출력 OR 결과저장해서 view 포워드
-		//응답결과 인코딩  
-		response.setContentType("text/html; charset=UTF-8");
+		request.setAttribute("list", list);
+		request
+		.getRequestDispatcher("/member/memberList.jsp") //뷰페이지 포워드 넘어감
+		.forward(request, response);
 		
-		PrintWriter out = response.getWriter();
-		request.getRequestDispatcher("/common/menu.jsp").include(request, response);
-		out.print("<h3>회원목록</h3>");
-		out.print("<table border>");
-		for(MemberVO vo : list) {
-			out.print("<tr>");
-			out.print("<td>" +vo.getId() +"</td>");
-			out.print("<td>" +vo.getName() +"</td>");
-			out.print("<td>" +vo.getIntroduction() +"</td>");
-			out.print("<tr>" );
-			
-		}
-
-		out.print("</table>");
+		
+		
+		//view 페이지 전방법
+//		//응답결과 인코딩  
+//		response.setContentType("text/html; charset=UTF-8");
+//		
+//		PrintWriter out = response.getWriter();
+//		request.getRequestDispatcher("/common/menu.jsp").include(request, response);
+//		out.print("<h3>회원목록</h3>");
+//		out.print("<table border>");
+//		for(MemberVO vo : list) {
+//			out.print("<tr>");
+//			out.print("<td>" +vo.getId() +"</td>");
+//			out.print("<td>" +vo.getName() +"</td>");
+//			out.print("<td>" +vo.getIntroduction() +"</td>");
+//			out.print("<tr>" );
+//			
+//		}
+//
+//		out.print("</table>");
 	}
 
 
