@@ -28,7 +28,7 @@ public class BoardList extends HttpServlet {
 		// 로그인 안되어있으면 로그인페이지로
 		String id = (String) request.getSession().getAttribute("loginId");
 		if (id == null) {
-			response.sendRedirect("/edu/member/login.jsp");
+			response.sendRedirect("/edu/member/memberLogin.jsp");
 			return;
 		}
 

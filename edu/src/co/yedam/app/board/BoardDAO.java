@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import co.yedam.app.common.ConnectionManager;
-import co.yedam.app.member.MemberVO;
+
 
 public class BoardDAO {
 	// 등록

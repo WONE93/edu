@@ -7,8 +7,7 @@ public class BoardVO {
 	String regdt;
 	String id;
 	String name;
-	
-	
+		
 	
 	public String getName() {
 		return name;

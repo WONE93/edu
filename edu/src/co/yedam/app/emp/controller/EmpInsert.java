@@ -15,8 +15,6 @@ import co.yedam.app.emp.EmpDAO;
 import co.yedam.app.emp.EmpVO;
 import co.yedam.app.emp.JobDAO;
 import co.yedam.app.emp.JobVO;
-import co.yedam.app.member.MemberDAO;
-import co.yedam.app.member.MemberVO;
 
 /**
  * Servlet implementation class EmpInsert

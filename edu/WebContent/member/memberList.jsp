@@ -14,7 +14,6 @@
 <body>
 	<!-- Nevigation bar -->
 	<%@include file="/common/menu.jsp"%>
-	<%=getServletContext().getRealPath("/") %>
 	<h3>회원목록</h3>
 	<table border="1">
 	<% ArrayList<MemberVO> list = 
