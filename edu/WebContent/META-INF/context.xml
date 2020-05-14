@@ -17,8 +17,8 @@
 				type="javax.sql.DataSource"
 				driverClassName="oracle.jdbc.OracleDriver"
 				url="jdbc:oracle:thin:@192.168.0.50:1521:xe" 
-				username="edu"
-				password="edu"
+				username="hr"
+				password="hr"
 			    maxTotal="20" 
 			    maxIdle="10" 
 			    maxWaitMillis="-1" />

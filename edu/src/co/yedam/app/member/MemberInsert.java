@@ -2,12 +2,15 @@ package co.yedam.app.member;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.reflect.InvocationTargetException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.beanutils.BeanUtils;
 
 
 /**
@@ -34,11 +37,12 @@ public class MemberInsert extends HttpServlet {
 		String pwd = request.getParameter("pwd");
 		
 		//자기소개, 이름, 종교, 취미
-		String name = request.getParameter("name");
-//		String hobby = request.getParameter("hobby");
-		String religion = request.getParameter("religion");
-		String introduction = request.getParameter("introduction");
-		String gender = request.getParameter("gender");
+		/*
+		 * String name = request.getParameter("name"); 
+		 * String religion = request.getParameter("religion"); 
+		 * String introduction = request.getParameter("introduction"); 
+		 * String gender = request.getParameter("gender");
+		 */
 	
 		String[] hobby = request.getParameterValues("hobby");
 		// 값이 체크박스일 경우에만, 선택지가 여러개인 경우에만 파라미터밸류스로 
@@ -58,13 +62,22 @@ public class MemberInsert extends HttpServlet {
 		MemberDAO memberDAO = new MemberDAO();
 		MemberVO member = new MemberVO();
 		
-		member.setId(id);
-		member.setPwd(pwd);
-		member.setName(name);
+		/*
+		 * member.setId(id); 
+		 * member.setPwd(pwd); 
+		 * member.setName(name);
+		 * member.setGender(gender); 
+		 * member.setReligion(religion);
+		 * member.setIntroduction(introduction);
+		 */
+		
+		try {
+			BeanUtils.copyProperties(member, request.getParameterMap());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		member.setHobby(hobbs);
-		member.setGender(gender);
-		member.setReligion(religion);
-		member.setIntroduction(introduction);
 		
 		int r = memberDAO.memberInsert(member);
 		
