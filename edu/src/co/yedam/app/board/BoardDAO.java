@@ -20,8 +20,8 @@ public class BoardDAO {
 			conn = ConnectionManager.getConnnect();
 
 			// 2. sql구문 준비
-			String sql = "insert into board (seq , title , contents ,  regdt , id )"
-					+ " values ( seq_board.nextval, ?, ?, sysdate, ?)";
+			String sql = "insert into board (seq , title , contents ,  regdt , id, filename)"
+					+ " values ( seq_board.nextval, ?, ?, sysdate, ?, ?)";
 
 			psmt = conn.prepareStatement(sql);
 
@@ -30,6 +30,7 @@ public class BoardDAO {
 			psmt.setString(1, board.getTitle());
 			psmt.setString(2, board.getContents());
 			psmt.setString(3, board.getId());
+			psmt.setString(4, board.getFilename());
 
 			r = psmt.executeUpdate();
 
@@ -63,12 +64,13 @@ public class BoardDAO {
 			ResultSet rs = psmt.executeQuery();
 			while (rs.next()) {
 				BoardVO vo = new BoardVO(); // 4. 위치 while 안으로
-				vo.setId(rs.getString("seq"));
+				vo.setSeq(rs.getString("seq"));
 				vo.setId(rs.getString("title"));
 				vo.setContents(rs.getString("contents"));
 				vo.setRegdt(rs.getString("regdt"));
 				vo.setId(rs.getString("id"));
 				vo.setName(rs.getString("name"));// 결과값에 담기
+				vo.setFilename(rs.getString("filename"));
 				list.add(vo); // 5.리스트에 담기
 			}
 			// 4. 결과 저장
@@ -82,7 +84,7 @@ public class BoardDAO {
 	}
 
 	// 단건조회
-	public BoardVO getBoard(String id) {
+	public BoardVO getBoard(String seq) {
 		BoardVO vo = new BoardVO();
 		Connection conn = null;
 		PreparedStatement psmt = null;
@@ -90,10 +92,10 @@ public class BoardDAO {
 			// 1. DB 연결
 			conn = ConnectionManager.getConnnect();
 			// 2. 쿼리 준비
-			String sql = "select * from board where id=?";
+			String sql = "select * from board where seq=?";
 			psmt = conn.prepareStatement(sql);
 			// 3. statement 실행
-			psmt.setString(1, id); // 첫번재 물음표 값이 id다
+			psmt.setString(1, seq); // 첫번재 물음표 값이 id다
 			ResultSet rs = psmt.executeQuery();
 			if (rs.next()) {
 				vo.setSeq(rs.getString("seq"));
@@ -101,6 +103,7 @@ public class BoardDAO {
 				vo.setContents(rs.getString("contents"));
 				vo.setRegdt(rs.getString("regdt"));
 				vo.setId(rs.getString("id"));// 결과값에 담기
+				vo.setFilename(rs.getString("filename"));
 			}
 			// 4. 결과 저장
 		} catch (Exception e) {
@@ -123,7 +126,7 @@ public class BoardDAO {
 			conn = ConnectionManager.getConnnect();
 
 			// 2. sql구문 준비
-			String sql = "update board set title=?, contents=? " + " where id=?"; // id는 pk라서 수정불가
+			String sql = "update board set title=?, contents=? " + " where seq=?"; // id는 pk라서 수정불가
 
 			psmt = conn.prepareStatement(sql);
 

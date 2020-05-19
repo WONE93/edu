@@ -25,10 +25,13 @@
 			for (BoardVO vo : list) {
 		%>
 		<tr>
-			<td><%=vo.getName()%></td>
+			<td><%=vo.getSeq()%></td>
 			<td><%=vo.getId()%></td>
 			<td><%=vo.getTitle()%></td>
 			<td><%=vo.getRegdt()%></td>
+			<td><a href="FileDown.do?seq=<%=vo.getSeq()%>">
+					<%=vo.getFilename()%> </a></td>
+			
 		</tr>
 		<%
 			}
