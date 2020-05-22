@@ -4,7 +4,33 @@
 <html>
 <head>
 <title>ajaxXml.jsp</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
+	function findNameJquery() {
+		//1. load
+/* 		$("#result").load("../FindNameJSON?id="+id.value, function(){
+			alert("end");
+		}); */
+		
+		//2.getJson	
+	/* 	$.getJSON("../FindNameJSON", {id:id.value}, function(r){
+			$("#result").html( r.name ); //응답결과를 파싱까지해서 뿌려준다 
+		} ); */
+	
+		//3. ajax
+		$.ajax( {
+			url : "../FindNameJSON",
+			data : {id:id.value},
+			dataType : "json",
+			success : function(r){
+				$("#result").html( r.name );
+			},
+			async : false
+		});
+		
+	}
+	
+	
 	function findName() {
 		//1.xhr
 		var xhr = new XMLHttpRequest();
@@ -24,7 +50,7 @@
 </head>
 <body>
 <form name="frm">
-	<input name="id" id="id" onchange="findName()"><span id="result"></span>
+	<input name="id" id="id" onchange="findNameJquery()"><span id="result"></span>
 </form>
 </body>
 </html>

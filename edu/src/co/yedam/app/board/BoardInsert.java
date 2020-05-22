@@ -29,7 +29,7 @@ public class BoardInsert extends HttpServlet {
 
 
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
 		//목록으로 페이지 이동
@@ -43,11 +43,13 @@ public class BoardInsert extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// 요청정보 인코딩
+//		request.setCharacterEncoding("utf-8");
+		
+		System.out.println("게시글 등록 서블릿 실행");
 		// 포스트 방식일때는 밑의 방식으로 해야 한글 안깨짐
 		// 응답결과 인코딩
 		response.setContentType("text/html; charset=UTF-8");
-		// 요청정보 인코딩
-		request.setCharacterEncoding("utf-8");
 
 		// 1.파라미터 받기
 		String title = request.getParameter("title");
